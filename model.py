@@ -10,7 +10,7 @@ class Linear_QNet(nn.Module):
 
         super().__init__()
 
-        # create two linear layers
+        # create three linear layers
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.fc2 = nn.Linear(hidden_size, hidden_size)
         self.fc3 = nn.Linear(hidden_size, output_size)
@@ -23,7 +23,7 @@ class Linear_QNet(nn.Module):
 
         return x
 
-    def save(self, file_name='model.pth'):
+    def save_model(self, file_name='model.pth'):
 
         "save the model"
 
@@ -47,7 +47,7 @@ class QTrainer:
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
         self.criterion = nn.MSELoss()
 
-    def train_step(self, state, action, reward, next_state, done):
+    def training_step(self, state, action, reward, next_state, done):
 
         # convert them into tensors
         # size: (n, x)

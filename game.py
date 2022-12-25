@@ -26,7 +26,7 @@ BLACK = (0,0,0)
 
 # some constants
 BLOCK_SIZE = 20
-SPEED = 100
+SPEED = 150
 
 class SnakeGameAI:
 
@@ -73,7 +73,7 @@ class SnakeGameAI:
             self._place_food()
 
 
-    def play_step(self, action):
+    def next_step(self, action):
 
         # increase the time by one
         self.frame_iteration += 1
@@ -93,7 +93,7 @@ class SnakeGameAI:
         # check if the game is over
         reward = 0
         game_over = False
-        if self.is_collision() or self.frame_iteration > 250*len(self.snake):   # check for time out (the time length is proportional to the length of the snake)
+        if self.collide() or self.frame_iteration > 250*len(self.snake):   # check for time out (the time length is proportional to the length of the snake)
 
             # if the snake collides with the wall or bites itself,
             # then the game is over and we return the score
@@ -115,13 +115,13 @@ class SnakeGameAI:
             self.snake.pop()
 
         # update the frame
-        self._update_ui()
+        self._update_game_env()
         self.clock.tick(SPEED)
 
         return reward, game_over, self.score
 
 
-    def is_collision(self, pt=None):
+    def collide(self, pt=None):
 
         "check if the snake hits the walls or eats itself"
 
@@ -139,9 +139,9 @@ class SnakeGameAI:
         return False
 
 
-    def _update_ui(self):
+    def _update_game_env(self):
 
-        "display the gaming environment"
+        "update/display the gaming environment"
 
         # fill the background as black
         self.display.fill(BLACK)
