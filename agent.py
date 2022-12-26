@@ -1,8 +1,10 @@
+import os
 import torch
 import random
 import numpy as np
 from collections import deque
 import math
+import csv
 from game import *
 from model import *
 from helper import *
@@ -21,7 +23,17 @@ class Agent:
         self.memory = deque(maxlen=MAX_MEMORY) # there are 11 parameters for input state, and 3 parameters for output
         self.model = Linear_QNet(11, 128, 3)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
+        self.log_file_name = "{}-{}-{}.csv".format(self.gamma, "three-layers", "250")
 
+        # check if the file already exists (to prevent from overwriting)
+        self._check_file_exist()
+
+    def _check_file_exist(self):
+
+        flag = os.path.exists(self.log_file_name)
+
+        if flag:
+            raise AssertionError("File already exists")
 
     def get_state(self, game):
 
@@ -143,7 +155,7 @@ def train():
     game = SnakeGameAI()
 
     # the main loop
-    while True:
+    while (agent.episodes < 450):
 
         # get the current state (old state)
         state_old = agent.get_state(game)
@@ -152,7 +164,7 @@ def train():
         final_move = agent.get_action(state_old)
 
        # perform based on the action
-        reward, done, score = game.next_step(final_move)
+        reward, done, score, num_steps = game.next_step(final_move)
         state_new = agent.get_state(game)
 
         # train the short-term memory
@@ -177,7 +189,14 @@ def train():
                 agent.model.save_model()
 
             # print the reuslts
-            print('Episode:', agent.episodes, 'Score:', score, 'Best Record:', record)
+            print('Episode:', agent.episodes, 'Score:', score, 'Steps:', num_steps, 'Best:', record)
+
+            # output the results to log file
+            with open(agent.log_file_name, 'a', newline='') as file:  # use append method
+            
+                writer = csv.writer(file)
+                data = [agent.episodes, score, num_steps]
+                writer.writerow(data)
 
             # plot the reuslts
             plot_scores.append(score)
@@ -185,6 +204,7 @@ def train():
             mean_score = total_score / agent.episodes
             plot_mean_scores.append(mean_score)
             plot(plot_scores, plot_mean_scores)
+
 
 
 if __name__ == '__main__':

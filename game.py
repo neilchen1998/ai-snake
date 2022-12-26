@@ -58,7 +58,7 @@ class SnakeGameAI:
         self.score = 0
         self.food = None
         self._place_food()
-        self.frame_iteration = 0
+        self.num_steps = 0
 
 
     def _place_food(self):
@@ -75,8 +75,8 @@ class SnakeGameAI:
 
     def next_step(self, action):
 
-        # increase the time by one
-        self.frame_iteration += 1
+        # increase the number of steps by one
+        self.num_steps += 1
 
         # get the user's input
         for event in pygame.event.get():
@@ -93,13 +93,13 @@ class SnakeGameAI:
         # check if the game is over
         reward = 0
         game_over = False
-        if self.collide() or self.frame_iteration > 250*len(self.snake):   # check for time out (the time length is proportional to the length of the snake)
+        if self.collide() or self.num_steps > 250*len(self.snake):   # check for time out (the time length is proportional to the length of the snake)
 
             # if the snake collides with the wall or bites itself,
             # then the game is over and we return the score
             game_over = True
             reward = -10
-            return reward, game_over, self.score
+            return reward, game_over, self.score, self.num_steps
 
         # check if the snake eats the food
         if self.head == self.food:
@@ -118,7 +118,7 @@ class SnakeGameAI:
         self._update_game_env()
         self.clock.tick(SPEED)
 
-        return reward, game_over, self.score
+        return reward, game_over, self.score, self.num_steps
 
 
     def collide(self, pt=None):
