@@ -23,7 +23,7 @@ class Agent:
         self.memory = deque(maxlen=MAX_MEMORY) # there are 11 parameters for input state, and 3 parameters for output
         self.model = Linear_QNet(11, 128, 3)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
-        self.log_file_name = "{}-{}-{}.csv".format(self.gamma, "three-layers", "250")
+        self.log_file_name = "trial-{}.csv".format(2)
 
         # check if the file already exists (to prevent from overwriting)
         self._check_file_exist()
