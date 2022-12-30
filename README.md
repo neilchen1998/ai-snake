@@ -6,7 +6,14 @@ We use Deep Q-Learning method to train our agent to play Snake game.
 
 ## Approaches
 
+Firstly, we defined the state as a list of 11 boolean parameters: [danger ahead, danger right, danger left, direction left, direction right, direction up, direction down, food left, food right, food up, food down]. The agent will only have access to those 11 parameters.
+
+We define the learning rate as $\alpha$, the randomness as $\epsilon$, and the discount rate as $\gamma$.
+
 We use PyTorch libraries to build our deep Q-learning model.
+We take the advantage of experience replay, which the agent learns from a batch of experience (choose 1,000 samples randomly from the experience of 100,000 data points). The agent then makes an action: a random action (exploration) or an action based on the agent's experience (exploitation) based on the value of a random number that it generates.
+
+We only train the agent for 450 episodes and we record the total avgerage score, the last 100 episode average score, and the best score during the training period.
 
 ## Results
 
