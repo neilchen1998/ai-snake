@@ -6,6 +6,8 @@ We use Deep Q-Learning method to train our agent to play Snake game.
 
 ## Approaches
 
+We use PyTorch libraries to build our deep Q-learning model.
+
 ## Results
 
 <figure>
@@ -82,3 +84,7 @@ We use Deep Q-Learning method to train our agent to play Snake game.
 </table>
 
 ## References
+
+1. [Deep Reinforcement Learning: Guide to Deep Q-Learning](https://www.mlq.ai/deep-reinforcement-learning-q-learning/)
+
+2. [Building Model with PyTorch](https://pytorch.org/tutorials/beginner/introyt/modelsyt_tutorial.html)
