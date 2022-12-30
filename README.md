@@ -27,6 +27,8 @@ We only train the agent for 450 episodes and we record the total avgerage score,
   <figcaption align="bottom">After 350 episodes of training</figcaption>
 </figure>
 
+&nbsp;
+
 <table>
 <caption align="center">Results</caption>
 <tr>
