@@ -19,7 +19,7 @@ We use Deep Q-Learning method to train our agent to play Snake game.
 </figure>
 
 <table>
-<caption align="center">Result of A-Star Algorithm</caption>
+<caption align="center">Results</caption>
 <tr>
     <th>Model</th>
     <th>Gamma</th>
@@ -28,23 +28,56 @@ We use Deep Q-Learning method to train our agent to play Snake game.
     <th>TOT Avg. Score</th>
     <th>Last 100 Avg. Score</th>
     <th>Best Score</th>
-  </tr>
- <tr>
-  <td rowspan="4">Three Layers</td>
-  <td>0.9</td>
+</tr>
+<tr>
+  <td rowspan="4">three layers</td>
+  <td rowspan="2">0.9</td>
   <td>20</td>
   <td>-10</td>
   <td>9.653</td>
   <td>22.9</td>
   <td>59</td>
- </tr>
+</tr>
 <tr>
-  <td>0.9</td>
   <td>20</td>
   <td>-50</td>
   <td>7.04</td>
   <td>21.61</td>
   <td>52</td>
+</tr>
+<tr>
+  <td>0.85</td>
+  <td>20</td>
+  <td>-10</td>
+  <td>9.412</td>
+  <td>23.56</td>
+  <td>57</td>
+</tr>
+<tr>
+  <td>0.95</td>
+  <td>20</td>
+  <td>-10</td>
+  <td>9.507</td>
+  <td>25.44</td>
+  <td>63</td>
+</tr>
+<tr>
+  <td>two layers (128 nodes)</td>
+  <td>0.9</td>
+  <td>20</td>
+  <td>-10</td>
+  <td>9.551</td>
+  <td>26.22</td>
+  <td>52</td>
+</tr>
+<tr>
+  <td>two layers (256 nodes)</td>
+  <td>0.9</td>
+  <td>20</td>
+  <td>-10</td>
+  <td>10.704</td>
+  <td>24.64</td>
+  <td>55</td>
  </tr>
 </table>
 
