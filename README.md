@@ -27,6 +27,13 @@ We only train the agent for 450 episodes and we record the total avgerage score,
   <figcaption align="bottom">After 350 episodes of training</figcaption>
 </figure>
 
+<figure>
+  <img src="https://github.com/neilchen1998/ai-snake/blob/main/gifs/result-graph.png" alt="my alt text" width="300" height="250"/>
+  <figcaption align="bottom">A snapshot of the result graph</figcaption>
+</figure>
+
+&nbsp;
+
 <table>
 <caption align="center">Results</caption>
 <tr>
